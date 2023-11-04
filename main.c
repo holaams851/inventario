@@ -207,6 +207,7 @@ void categoria_del_producto(char *codigo_producto,char *nombre_producto,short in
     {
         printf("categorias %s\n",categoria_producto[iterable]);
     }
+    getch();
     return;
 
 }
