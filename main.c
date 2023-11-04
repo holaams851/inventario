@@ -193,14 +193,21 @@ void ver_si_hay_flotante(char *palabra)
 
 
 /*funcion de agregar_producto*/
-void categoria_del_producto();
-void categoria_del_producto()
+void categoria_del_producto(char *codigo_producto,char *nombre_producto,short int *cantidad,short double precio,char *verificar);
+void categoria_del_producto(char *codigo_producto,char *nombre_producto,short int *cantidad,short double precio,char *verificar)
 {
     /*
     (Estas categorías ya deben de estar definidas 
     en el programa mostrara dichas categorías y
     el usuario seleccionara la categoría a
-    la que pertenece el producto).yguyguuy*/
+    la que pertenece el producto).*/
+    short int iterable;
+    borrar();
+    for (iterable=0;iterable<NUMERO_DE_CATEGORIAS;iterable++)
+    {
+        printf("categorias %s\n",categoria_producto[iterable]);
+    }
+    getch();
     return;
 
 }
@@ -281,10 +288,8 @@ void precio_del_producto(char *codigo_producto,char *nombre_producto,short int *
         
     }
     precio = atof(numero_flotante); /*Para convertir cadena a double*/
-    borrar();
-    printf("%lf",precio);
-    getch();
-    categoria_del_producto();
+   
+    categoria_del_producto(codigo_producto,nombre_producto,cantidad,precio,verificar);
     if (strcmp(verificar,"salir") == 0)
     {
         precio_del_producto(codigo_producto,nombre_producto,cantidad,verificar);
