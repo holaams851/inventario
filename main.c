@@ -201,6 +201,12 @@ void categoria_del_producto(char *codigo_producto,char *nombre_producto,short in
     en el programa mostrara dichas categorías y
     el usuario seleccionara la categoría a
     la que pertenece el producto).*/
+    short int iterable;
+    borrar();
+    for (iterable=0;iterable<NUMERO_DE_CATEGORIAS;iterable++)
+    {
+        printf("categorias %s\n",categoria_producto[iterable]);
+    }
     return;
 
 }
