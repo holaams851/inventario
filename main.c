@@ -200,7 +200,7 @@ void categoria_del_producto()
     (Estas categorías ya deben de estar definidas 
     en el programa mostrara dichas categorías y
     el usuario seleccionara la categoría a
-    la que pertenece el producto).*/
+    la que pertenece el producto).yguyguuy*/
     return;
 
 }
