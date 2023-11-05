@@ -2685,8 +2685,9 @@ void factura()
    
     
 }
-
-void credenciales() {
+void credenciales(void);
+void credenciales() 
+{
 	int i=0;
 	char userName[10],passWord[4];
 	cred: do {
@@ -2696,35 +2697,54 @@ void credenciales() {
 		textcolor(YELLOW);
 		cprintf("Intento %d de 3.",i);
 		gotoxy(24,12);
-		printf("Ingrese su usuario:");
+		cprintf("Ingrese su usuario: ");
 		gets(userName);
-		gotoxy(24,13);
-		printf("Ingrese su contrasena:");
-		gets(passWord);
 		gotoxy(24,14);
-		getch();
+		cprintf("Ingrese su contrasena: ");
+		gets(passWord);
 	} while(i<3 && strcmp(strlwr(userName), "daniel") != 0 && strcmp(passWord, "123") != 0 && strcmp(strlwr(userName), "ernesto") != 0 && strcmp(passWord, "000") !=0);
 
-	if(i>=4) {
+	if(i>=4) 
+    {
 		clrscr();
-		gotoxy(24,11);
-		printf("Intentos agotados, acceso denegado.");
+		gotoxy(24,16);
+        textcolor(LIGHTGREEN);
+		cprintf("Intentos agotados, acceso denegado.");
 		getch();
 	}
 
-	if (strcmp(strlwr(userName), "daniel") == 0 && strcmp(passWord, "123") == 0) {
+	if (strcmp(strlwr(userName), "daniel") == 0 && strcmp(passWord, "123") == 0)
+    {
+        gotoxy(24,16);
+        textcolor(LIGHTGREEN);
+		cprintf("Credenciales correctas.");
+		getch();
 		menu_principal();
-	} else if (strcmp(strlwr(userName), "daniel") == 0 && strcmp(passWord, "000") == 0) {
+	} 
+    else if (strcmp(strlwr(userName), "daniel") == 0 && strcmp(passWord, "000") == 0) 
+    {
+        gotoxy(24,16);
+        textcolor(LIGHTGREEN);
+		cprintf("Intentos agotados, acceso denegado.");
+		getch();
 		menu_principal();
-	} else if(i<3){
-		printf("Credenciales incorrectas.");
+	} 
+    else if(i<3)
+    {
+        gotoxy(24,16);
+        textcolor(LIGHTGREEN);
+		cprintf("Credenciales incorrectas.");
+        getch();
 		goto cred;
-	} else {
+	} 
+    else 
+    {
 		clrscr();
-		gotoxy(24,11);
-		printf("Intentos agotados, acceso denegado.");
+		gotoxy(24,16);
+		cprintf("Intentos agotados, acceso denegado.");
 		getch();
 	}
+    return;
 }
 
 void principal(void);
