@@ -2686,139 +2686,50 @@ void factura()
     
 }
 
-char *usuario(void);
-char *usuario() 
-{   char usuario[10];
-    size_t len;
-    int conteo = 3;
-    while (conteo > 0) 
-    {   
-		borrar();
-		
-			
-        gotoxy(10,4);
-        textcolor(CYAN);
-        cprintf("Pon tu nombre de usuario: ");
-        textcolor(GREEN);
-        cprintf("                                                               ");
-    
-        gotoxy(10,6);
-        textcolor(CYAN);
-        cprintf("Ingresa tu contrasena: ");
-    
-			
-			
-		
-		gotoxy(36,4);
-		fgets(usuario, sizeof(usuario), stdin);
-       
-        len = strlen(usuario);
-		if (strcmp(usuario,"\n") == 0)
-		{
-			borrar();
-			continue;	
-		}
-		else
-		{
-			if (len > 0 && usuario[len - 1] == '\n')
-        	{
-            	usuario[len - 1] = '\0';
-        	}
-            mayuscula(&usuario);
-        	if (strcmp(usuario, "DANIEL") == 0 || strcmp(usuario, "ERNESTO") == 0)
-        	{
-            	return strdup(usuario); 
-        	} 
-        	else
-        	{
-            	conteo--;
-				gotoxy(37,6);
-				textcolor(RED);
-            	cprintf("Te quedan %d intentos\n", conteo);
-				getch();
-        	}
-		}    
-    }
-    return NULL;
-}
+void credenciales() {
+	int i=0;
+	char userName[10],passWord[4];
+	cred: do {
+		clrscr();
+		i++;
+		gotoxy(24,10);
+		textcolor(YELLOW);
+		cprintf("Intento %d de 3.",i);
+		gotoxy(24,12);
+		printf("Ingrese su usuario:");
+		gets(userName);
+		gotoxy(24,13);
+		printf("Ingrese su contrasena:");
+		gets(passWord);
+		gotoxy(24,14);
+		getch();
+	} while(i<3 && strcmp(tolower(userName), "daniel") != 0 && strcmp(passWord, "123") != 0 && strcmp(tolower(userName), "ernesto") != 0 && strcmp(passWord, "000") !=0);
 
-char *contrasena(char *user);
-char *contrasena(char *user)
-{
-    char contrasena[20];
-    int conteo = 3;
-    size_t len;
-    while (conteo > 0)
-    {
-		borrar();
-		
-			
-        gotoxy(10,4);
-        textcolor(CYAN);
-        cprintf("Pon tu nombre de usuario: ");
-        textcolor(GREEN);
-        cprintf("%s",user);
+	if(i>=4) {
+		clrscr();
+		gotoxy(24,11);
+		printf("Intentos agotados, acceso denegado.");
+		getch();
+	}
 
-        gotoxy(10,6);
-        textcolor(CYAN);
-        cprintf("Ingresa tu contrasena: ");
-		textcolor(GREEN);
-        cprintf("                                                               ");
-		
-		gotoxy(33,6);
-        fgets(contrasena, sizeof(contrasena), stdin);
-        len = strlen(contrasena);
-		if (strcmp(contrasena,"\n") == 0)
-		{
-			borrar();
-			continue;
-		}
-		else
-		{
-			if (len > 0 && contrasena[len - 1] == '\n')
-        	{
-            	contrasena[len - 1] = '\0';
-        	}
-            mayuscula(&user);
-        	if (strcmp(user, "DANIEL") == 0)
-        	{
-           		if (strcmp(contrasena, "123") == 0) 
-            	{
-                	return strdup(contrasena);
-            	}
-            	else
-            	{
-                	conteo--;
-					gotoxy(38,13);
-					textcolor(RED);
-					cprintf("Te quedan %d intentos\n", conteo);
-					getch();
-            	}
-        	}
-			else
-			{
-				if (strcmp(contrasena, "000") == 0)
-				{
-					return strdup(contrasena);
-				}
-				else
-				{
-					conteo--;
-					gotoxy(38,13);
-					textcolor(RED);
-					cprintf("Te quedan %d intentos\n", conteo);
-					getch();
-				}
-			}
-		} 
-    }
-    return NULL;
+	if (strcmp(tolower(userName), "daniel") == 0 && strcmp(passWord, "123") == 0) {
+		menu_principal();
+	} else if (strcmp(tolower(userName), "daniel") == 0 && strcmp(passWord, "000") == 0) {
+		menu_principal();
+	} else if(i<3){
+		printf("Credenciales incorrectas.");
+		goto cred;
+	} else {
+		clrscr();
+		gotoxy(24,11);
+		printf("Intentos agotados, acceso denegado.");
+		getch();
+	}
 }
 
 void principal(void);
 void principal()
 {
-    char *user, *password;
     borrar();
     /*Aqui va
     - el logo
@@ -2828,48 +2739,6 @@ void principal()
     */
     logo();
     inicio();
-    
-    user = usuario();
-    if (user != NULL)
-    {
-        borrar();
-        password = contrasena(user);
-        if (strcmp(user, "DANIEL") == 0 && strcmp(password, "123") == 0)
-        {
-			menu_principal();
-        }
-        else if (strcmp(user, "ERNESTO") == 0 && strcmp(password, "000") == 0)
-        {
-           
-			menu_principal();
-
-			
-        }
-        else
-        {
-			borrar();
-			gotoxy(28,14);
-			textcolor(GREEN);
-			cprintf("por seguridad cerraremos");
-			gotoxy(34,15);
-			textcolor(GREEN);
-			cprintf("este programa");
-			getch();
-			exit(0);
-
-        }
-    }
-    else
-    {
-		borrar();
-        gotoxy(28,14);
-		textcolor(GREEN);
-		cprintf("por seguridad cerraremos");
-		gotoxy(34,15);
-		textcolor(GREEN);
-		cprintf("este programa");
-		getch();
-        exit(0);
-    }
+    credenciales();   
     return;
 }
