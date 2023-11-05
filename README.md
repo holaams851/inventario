@@ -21,8 +21,8 @@ void main()
 - [x] **2.	Actualizar Producto.**
 - [x] **3.	Eliminar producto.**
 - [x] **4.	Buscar Producto.**
-- [ ] **5.	Realizar Venta.**
-- [ ] **6.	Salir.**
+- [x] **5.	Realizar Venta.**
+- [x] **6.	Salir.**
 
 ---
 
