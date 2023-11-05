@@ -2703,7 +2703,7 @@ void credenciales() {
 		gets(passWord);
 		gotoxy(24,14);
 		getch();
-	} while(i<3 && strcmp(tolower(userName), "daniel") != 0 && strcmp(passWord, "123") != 0 && strcmp(tolower(userName), "ernesto") != 0 && strcmp(passWord, "000") !=0);
+	} while(i<3 && strcmp(strlwr(userName), "daniel") != 0 && strcmp(passWord, "123") != 0 && strcmp(strlwr(userName), "ernesto") != 0 && strcmp(passWord, "000") !=0);
 
 	if(i>=4) {
 		clrscr();
@@ -2712,9 +2712,9 @@ void credenciales() {
 		getch();
 	}
 
-	if (strcmp(tolower(userName), "daniel") == 0 && strcmp(passWord, "123") == 0) {
+	if (strcmp(strlwr(userName), "daniel") == 0 && strcmp(passWord, "123") == 0) {
 		menu_principal();
-	} else if (strcmp(tolower(userName), "daniel") == 0 && strcmp(passWord, "000") == 0) {
+	} else if (strcmp(strlwr(userName), "daniel") == 0 && strcmp(passWord, "000") == 0) {
 		menu_principal();
 	} else if(i<3){
 		printf("Credenciales incorrectas.");
