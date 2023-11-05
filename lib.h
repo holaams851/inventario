@@ -2553,7 +2553,19 @@ void realizar_venta()
                 if (strcmp(opcion,nombre_producto_agregados[iterable]) == 0)
                 {
                     indice = iterable;
-                    realizar_venta_final();
+                    if (cantidad_de_producto_agregados[indice] == 0)
+                    {
+                        gotoxy(15,22);
+                        textcolor(GREEN);
+                        cprintf("Las unidades del producto %s estan agotadas",nombre_producto_agregados[indice]);
+                        getch();
+                
+                    }
+                    else
+                    {
+                        realizar_venta_final();
+                    }
+                    
                     break;
                 }
                 else
@@ -2674,7 +2686,7 @@ void factura()
     
 }
 
-
+char *usuario(void);
 char *usuario() 
 {   char usuario[10];
     size_t len;
@@ -2730,7 +2742,7 @@ char *usuario()
     return NULL;
 }
 
-
+char *contrasena(char *user);
 char *contrasena(char *user)
 {
     char contrasena[20];
@@ -2802,8 +2814,6 @@ char *contrasena(char *user)
     }
     return NULL;
 }
-
-
 
 void principal(void);
 void principal()
